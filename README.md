@@ -1,4 +1,4 @@
- Security Best Practices
+ Docker Best Practices
  ---------------------------
  - Keep the image size low
  - Use official images
