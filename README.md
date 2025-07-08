@@ -1,21 +1,24 @@
 
 Docker Image
+------------------
 - It's a light-weight,standalone and executable package that includes Code+Runtime+Libraries
   +Environment variables+configuration files
 - Docker Images are immutable
 - Docker Images are really portable
 
 Docker Containers
+---------------------------
 - Running instances of images are called containers 
 - Isolation
 - Ephemeral
 - Portable
 
 How Docker Works
-
+-------------------
+![alt text](image-6.png)
 
 Docker Commands
-
+--------------------
 - docker pull <image-id>
 - docker run <image-id> (Pull+Create+Start) (-d-->detached mode)
 - docker ps
@@ -38,6 +41,7 @@ Dockerize Applications
 
 
 Troubleshoot a Docker Container That Exits Immediately?
+--------------------------------------------------------------------
 When a Docker container exits immediately, it’s usually because:
   - The main process (PID 1) inside the container has terminated.
   - There was a misconfiguration, crash, or incorrect command in the Dockerfile or entrypoint.
@@ -75,6 +79,7 @@ Look for:
   CMD ["tail", "-f", "/dev/null"]
 
 Common Causes
+----------------------
 ![alt text](image-2.png)
 >
  Docker Best Practices
