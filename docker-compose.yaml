@@ -1,35 +1,93 @@
 networks:
   roboshop:
     driver: bridge
-
+volumes:
+  mongodb:
+  redis:
+  mysql:
+  rabbitmq:
 services:
   mongodb:
-    image: mongodb:v1
+    image: dasaridevops/mongodb:v1
     container_name: mongodb
     networks:
-    - roboshop
+      - roboshop
+    volumes:
+    - source: mongodb
+      target: /data/db
+      type: volume
   catalogue:
-    image: catalogue:v1
+    image: dasaridevops/catalogue:v1
     container_name: catalogue
     networks:
     - roboshop
     depends_on:
-      - mongodb
+    - mongodb
   redis:
     image: redis
     container_name: redis
     networks:
-    - roboshop
+      - roboshop
+    volumes:
+    - source: redis
+      target: /data
+      type: volume
   user:
-    image: user:v1
+    image: dasaridevops/user:v1
     container_name: user
     networks:
-    - roboshop
+      - roboshop
     depends_on:
       - mongodb
       - redis
+  cart:
+    image: dasaridevops/cart:v1
+    container_name: cart
+    networks:
+      - roboshop
+    depends_on:
+      - redis
+      - catalogue
+  mysql:
+    image: dasaridevops/mysql:v1
+    container_name: mysql
+    networks:
+      - roboshop
+    volumes:
+    - source: mysql
+      target: /var/lib/mysql
+      type: volume
+  shipping:
+    image: dasaridevops/shipping:v1
+    container_name: shipping
+    networks:
+      - roboshop
+    depends_on:
+      - cart
+      - mysql
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    networks:
+      - roboshop
+    volumes:
+    - source: rabbitmq
+      target: /var/lib/rabbitmq
+      type: volume
+    environment:
+    - RABBITMQ_DEFAULT_USER=roboshop
+    - RABBITMQ_DEFAULT_PASS=roboshop123
+  payment:
+    image: dasaridevops/payment:v1
+    container_name: payment
+    networks:
+      - roboshop
+    depends_on:
+      - cart
+      - user
+      - rabbitmq
   web:
-    image: web:v1
+    image: dasaridevops/web:v1
     container_name: web
     networks:
     - roboshop
@@ -38,3 +96,6 @@ services:
     depends_on:
     - catalogue
     - user
+    - cart
+    - shipping
+    - payment
