@@ -27,10 +27,9 @@
  layer2 container is created by docker engine
  In Layer2 container, layer3 instruction will run
  Now layer 3 image is created and that is final
- - RUN echo "Hello">/opt/hello.html
-
- These layers will be cached
- If the instructions are more, build time is more and when docker push layers will be pushed to the container registry and memory is high
+ RUN echo "Hello">/opt/hello.html
+ - These layers will be cached
+ - If the instructions are more, build time is more and when docker push layers will be pushed to the container registry and memory is high
 
  ![alt text](image-1.png)
 
@@ -39,7 +38,7 @@
  - Club multiple instructions as single instruction
    Example: RUN yum install nginx -y && RUN echo "Hello">/opt/hello.html
  - Keep the frequently changing instructions at end so that previous layers will not get affected   
-   so that your build process is fast
+   and your build process is fast
 
 Disadvantages of Docker
 ------------------------
@@ -50,4 +49,5 @@ Disadvantages of Docker
     We have to run multiple containers
  - How to balance the lod if you have multiple cart containers
  - No self healing
+ - No auto-scaling
  - What about configs and secrets
