@@ -32,6 +32,8 @@ Docker Commands
 - docker run -p targetport:containerport dasaridevops/name:tag
 - docker inspect <container_id_or_name>
 - docker logs <container_id_or_name>
+- docker login
+- docker push <image-name>
 
 Dockerize Applications
 -------------------------
