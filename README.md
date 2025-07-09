@@ -232,6 +232,10 @@ Common Causes
  ----------------------
  ![alt text](image.png)
 
+ Docker Container Lifecycle Management
+ ---------------------------------------
+  - Create, run, pause, stop and delete
+  
  Docker Layers
  -----------------
  - Once docker image is created we cannot modify the image because docker images are immutable
