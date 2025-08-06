@@ -273,3 +273,13 @@ Disadvantages of Docker
  - No self healing
  - No auto-scaling
  - What about configs and secrets
+
+nginx
+------------------------
+ - Nginx (pronounced engine-x) is a high-performance, open-source web server and reverse proxy server. It’s widely used for serving static content, load balancing, handling HTTP requests, and acting as a gateway between clients and backend services.
+ - It is open source, high performance web server. It is not limited to web server, it is having load balancing capabilities, reverse proxy and also for HTTP Caching
+ - Apache httpd is similar as nginx however the performnce is far better when you compare httpd. nginx - event-driven architecture and httpd is thread-based architecture
+ - It can handle large no of user requests and memory consumption is low, So it is fast and simple compare to httpd
+ - sudo apt update, sudo apt install nginx -y, sudo systemctl status nginx,Allow inbound traffic (SG)
+ - even without port specified by default nginx is running on port: 80
+ - 
